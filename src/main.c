@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include "pico/stdlib.h"
 #include "pico/multicore.h"
+#include "queue.h"
+#include "utils.hpp"
 #include "heater.hpp"
 #include "pidController.hpp"
 #include "pidController.hpp"
@@ -11,6 +13,9 @@
 
 auto_init_mutex(xSDKMutex);
 static semaphore_t xSDKSemaphore;
+
+QueueHandle_t tempQueue;
+QueueHandle_t pwmQueue;
 
 static void nonRTOSWorker(){
     printf("Core %d: NonRTOSWorker\n", get_core_num());
@@ -37,6 +42,10 @@ static void setup( void )
 
 int main(void){
     setup();
+
+
+    tempQueue = xQueueCreate(1, sizeof(float));
+    pwmQueue = xQueueCreate(1, sizeof(float));
 
     xTaskCreate(HEATER_TASK, "heater_task", 512, NULL, (configMAX_PRIORITIES-1), &heater_task_handle);
     xTaskCreate(PID_TASK, "pid_task", 512, NULL, (configMAX_PRIORITIES-1), &PID_task_handle);
