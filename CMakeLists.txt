@@ -27,7 +27,7 @@ target_include_directories(HotplateController INTERFACE
 target_link_libraries(HotplateController INTERFACE
         FreeRTOS-Kernel
         FreeRTOS-Kernel-Heap1
-        pico_adc
+        hardware_adc
         pico_stdlib
         pico_multicore
         )

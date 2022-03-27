@@ -3,3 +3,5 @@
 .vscode/ipch
 
 build
+
+.vscode/extensions.json
