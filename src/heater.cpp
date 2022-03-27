@@ -8,7 +8,6 @@ TaskHandle_t heater_task_handle;
 
 void HEATER_TASK(){
     while(1){ 
-        printf("HEATER %d\n", get_core_num());
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

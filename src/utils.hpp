@@ -19,5 +19,5 @@ void operator delete[](void* ptr){
     vPortFree(ptr);
 }
 
-const uint32_t TEMP_PROBE_PIN = 9;
-const uint32_t HEATER_PWM_PIN = 8;
+const uint32_t TEMP_PROBE_PIN = 26;
+const uint32_t HEATER_PWM_PIN = 6;

@@ -27,10 +27,12 @@ target_include_directories(HotplateController INTERFACE
 target_link_libraries(HotplateController INTERFACE
         FreeRTOS-Kernel
         FreeRTOS-Kernel-Heap1
+        pico_adc
         pico_stdlib
-        pico_multicore)
+        pico_multicore
+        )
 
-add_executable(on_core_zero)
-target_link_libraries(on_core_zero HotplateController)
-pico_add_extra_outputs(on_core_zero)
-pico_enable_stdio_usb(on_core_zero 1)
+add_executable(hotplateController)
+target_link_libraries(hotplateController HotplateController)
+pico_add_extra_outputs(hotplateController)
+pico_enable_stdio_usb(hotplateController 1)

@@ -13,7 +13,7 @@ float getTemp(){
 }
 
 void setPWM(float duty){
-    printf("PWM Output: %f\n", duty);
+    //printf("PWM Output: %f\n", duty);
     return;
 }
 
