@@ -10,3 +10,8 @@ const uint32_t HEATER_PWM_PIN = 6;
 //Queues
 extern QueueHandle_t tempQueue;
 extern QueueHandle_t pwmQueue;
+
+extern QueueHandle_t displayTempQueue;
+extern QueueHandle_t displayPWMQueue;
+
+extern QueueHandle_t targetTempQueue;

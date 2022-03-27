@@ -17,6 +17,8 @@ target_sources(HotplateController INTERFACE
         src/heater.cpp
         src/tempProbe.cpp
         src/pidController.cpp
+        src/display.cpp
+        src/controller.cpp
         deps/PID/cpp/PID.cpp
         )
 
@@ -28,6 +30,7 @@ target_link_libraries(HotplateController INTERFACE
         FreeRTOS-Kernel
         FreeRTOS-Kernel-Heap1
         hardware_adc
+        hardware_pwm
         pico_stdlib
         pico_multicore
         )

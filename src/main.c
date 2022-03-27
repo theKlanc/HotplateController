@@ -6,7 +6,9 @@
 #include "pico/multicore.h"
 #include "queue.h"
 #include "utils.hpp"
+#include "controller.hpp"
 #include "heater.hpp"
+#include "display.hpp"
 #include "pidController.hpp"
 #include "pidController.hpp"
 #include "tempProbe.hpp"
@@ -16,6 +18,11 @@ static semaphore_t xSDKSemaphore;
 
 QueueHandle_t tempQueue;
 QueueHandle_t pwmQueue;
+
+QueueHandle_t displayPWMQueue;
+QueueHandle_t displayTempQueue;
+
+QueueHandle_t targetTempQueue;
 
 static void nonRTOSWorker(){
     printf("Core %d: NonRTOSWorker\n", get_core_num());
@@ -47,9 +54,16 @@ int main(void){
     tempQueue = xQueueCreate(1, sizeof(float));
     pwmQueue = xQueueCreate(1, sizeof(float));
 
+    displayTempQueue = xQueueCreate(1, sizeof(float));
+    displayPWMQueue = xQueueCreate(1, sizeof(float));
+
+    targetTempQueue = xQueueCreate(1, sizeof(float));
+
     xTaskCreate(HEATER_TASK, "heater_task", 512, NULL, (configMAX_PRIORITIES-1), &heater_task_handle);
     xTaskCreate(PID_TASK, "pid_task", 512, NULL, (configMAX_PRIORITIES-1), &PID_task_handle);
-    xTaskCreate(TEMP_TASK, "pid_task", 512, NULL, (configMAX_PRIORITIES-1), &PID_task_handle);
+    xTaskCreate(TEMP_TASK, "temp_task", 512, NULL, (configMAX_PRIORITIES-1), &temp_task_handle);
+    xTaskCreate(DISPLAY_TASK, "display_task", 512, NULL, (configMAX_PRIORITIES-1), &display_task_handle);
+    xTaskCreate(CONTROLLER_TASK, "controller_task", 512, NULL, (configMAX_PRIORITIES-1), &controller_task_handle);
     
     launchRTOS();
 }

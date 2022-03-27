@@ -13,23 +13,25 @@ TaskHandle_t PID_task_handle;
 float getTemp(){
     float temp;
     xQueueReceive(tempQueue, &temp, portMAX_DELAY);
-    printf("temp input: %f\n", temp);
     return temp;
 }
 
 void setPWM(float duty){
-    printf("PWM Output: %f\n", duty);
-    return;
+    xQueueSend(displayPWMQueue, &duty, 0);
+    xQueueSend(pwmQueue, &duty, portMAX_DELAY);
 }
 
 void PID_TASK(){
-    PIDController<float> pidController(1,1,1, getTemp, setPWM);
+    PIDController<float> pidController(5,0.05,0, getTemp, setPWM);
     pidController.setInputBounds(-50, 500);
     pidController.setOutputBounds(0, 1);
     pidController.registerTimeFunction(time_us_32);
+    float target = 250;
+    pidController.setTarget(target);
     pidController.setEnabled(true);
-    while(1){ 
-        pidController.setTarget(50);
+    while(1){
+        xQueueReceive(targetTempQueue, &target, 0);
+        pidController.setTarget(target);
         pidController.tick();
         vTaskDelay(pdMS_TO_TICKS(1));
     }

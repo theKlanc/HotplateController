@@ -48,6 +48,7 @@ void TEMP_TASK(){
         v /= adcIterations;
         float r = calculateResistance(v);
         float t = calculateTemperature(r) - 273;
+        xQueueSend(displayTempQueue, &t, 0);
         if(abs(t-oldTemp) > 2){
             oldTemp = t;
             xQueueSend(tempQueue, &t, portMAX_DELAY);
