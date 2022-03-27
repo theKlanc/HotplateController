@@ -1,0 +1,18 @@
+// AUTOMATICALLY GENERATED FILE. PLEASE DO NOT MODIFY IT MANUALLY
+//
+// PIO Unified Debugger
+//
+// Documentation: https://docs.platformio.org/page/plus/debugging.html
+// Configuration: https://docs.platformio.org/page/projectconf/section_env_debug.html
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "command": "cp build/on_core_zero.uf2 /media/RPI-RP2 && sleep 3 && screen /dev/ttyACM0",
+            "name": "Upload to Pico",
+            "request": "launch",
+            "type": "node-terminal"
+        }
+    ]
+}

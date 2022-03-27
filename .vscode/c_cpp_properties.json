@@ -1,0 +1,41 @@
+{
+    "configurations": [
+        {
+            "name": "freertos-rp2040",
+            "includePath": [
+                "/opt/FreeRTOS-Kernel/include",
+                "/usr/share/pico-sdk/src/rp2_common/pico_multicore/include/",
+                "${workspaceFolder}",
+                "${workspaceFolder}/src",
+                "/home/klanc/Projects/Playground/FreeRTOS-SMP-Demos/FreeRTOS/Source/portable/ThirdParty/GCC/RP2040/include",
+                "/usr/share/pico-sdk/src/common/pico_base/include/",
+                "/usr/share/pico-sdk/src/common/pico_binary_info/include/",
+                "/usr/share/pico-sdk/src/common/pico_bit_ops/include/",
+                "/usr/share/pico-sdk/src/common/pico_divider/include/",
+                "/usr/share/pico-sdk/src/common/pico_stdlib/include/",
+                "/usr/share/pico-sdk/src/common/pico_sync/include/",
+                "/usr/share/pico-sdk/src/common/pico_time/include/",
+                "/usr/share/pico-sdk/src/common/pico_usb_reset_interface/include/",
+                "/usr/share/pico-sdk/src/common/pico_util/include/",
+                "/usr/share/pico-sdk/src/host/hardware_divider",
+                "/usr/share/pico-sdk/src/host/hardware_gpio",
+                "/usr/share/pico-sdk/src/host/hardware_sync",
+                "/usr/share/pico-sdk/src/host/hardware_timer",
+                "/usr/share/pico-sdk/src/host/hardware_uart",
+                "/usr/share/pico-sdk/src/host/pico_bit_ops",
+                "/usr/share/pico-sdk/src/host/pico_divider",
+                "/usr/share/pico-sdk/src/host/pico_multicore",
+                "/usr/share/pico-sdk/src/host/pico_platform",
+                "/usr/share/pico-sdk/src/host/pico_printf",
+                "/usr/share/pico-sdk/src/host/pico_stdio",
+                "/usr/share/pico-sdk/src/host/pico_stdlib",
+                "${workspaceFolder}/deps/PID/cpp"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}
